@@ -1,1 +1,0 @@
-[ ] mariadb -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_USER_PASS';" | what if I don't specify all hosts as option

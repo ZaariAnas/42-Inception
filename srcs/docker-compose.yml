@@ -8,8 +8,8 @@ services:
     image: nginx:1337
     build: ./requirements/nginx/
     container_name: nginx
-    volume:
-      - wordpress-vol:/var/www
+    volumes:
+      - wordpress-vol:/var/www/wordpress
     networks:
       - inception
     ports:
@@ -25,7 +25,7 @@ services:
     build: ./requirements/mariadb/
     container_name: mariadb
     volumes:
-      - mariadb-vol:/var/www
+      - mariadb-vol:/var/www/wordpress
     env_file:
       - .env
     networks:
@@ -40,7 +40,7 @@ services:
     build: ./requirements/wordpress/
     container_name: wordpress
     volumes:
-      - wordpress-vol:/var/www
+      - wordpress-vol:/var/www/wordpress
     env_file:
       - .env
     networks:

@@ -1,2 +1,1 @@
-[ ] wp core download --allow-root                                           | --allow-root flag is to surpass the checks performed by WP-CLI for privileges
-[ ] mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php       | 
+[ ] mariadb -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_USER_PASS';" | what if I don't specify all hosts as option

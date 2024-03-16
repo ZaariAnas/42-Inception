@@ -7,5 +7,5 @@ RUN apt-get install -y php7.4\
     mariadb-client
 
 COPY tools/script.sh script.sh 
-RUN mkdir -p /run/php && chmod +x script.sh
+
 CMD ["sh" ,"script.sh"]

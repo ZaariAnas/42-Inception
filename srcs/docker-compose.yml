@@ -1,3 +1,67 @@
 version: '3.9'
 
+services:
 
+#--------------------------------------- nginx
+
+  nginx:
+    image: nginx:1337
+    build: ./requirements/nginx/
+    container_name: nginx
+    volume:
+      - wordpress-vol:/var/www
+    networks:
+      - inception
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+
+#--------------------------------------- mariadb
+
+  mariadb:
+    image: mariadb:1337
+    build: ./requirements/mariadb/
+    container_name: mariadb
+    volumes:
+      - mariadb-vol:/var/www
+    env_file:
+      - .env
+    networks:
+      - inception
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping"]
+
+#--------------------------------------- wordpress
+  wordpress:
+    image: wordpress:1337
+    build: ./requirements/wordpress/
+    container_name: wordpress
+    volumes:
+      - wordpress-vol:/var/www
+    env_file:
+      - .env
+    networks:
+      - inception
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+#----------------------------------------
+volumes:
+  wordpress-vol:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "${HOME}/data/wordpress-volume"
+  mariadb-vol:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "${HOME}/data/mariadb-volume"
+
+networks:
+  inception:
+    name: inception

@@ -16,6 +16,7 @@ services:
       - "443:443"
     depends_on:
       - wordpress
+    restart: always
 
 #--------------------------------------- mariadb
 
@@ -31,6 +32,7 @@ services:
       - inception
     healthcheck:
       test: ["CMD", "mysqladmin", "ping"]
+    restart: always
 
 #--------------------------------------- wordpress
   wordpress:
@@ -46,6 +48,7 @@ services:
     depends_on:
       mariadb:
         condition: service_healthy
+    restart: always
 
 #----------------------------------------
 volumes:

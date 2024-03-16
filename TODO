@@ -1,0 +1,2 @@
+[ ] wp core download --allow-root                                           | --allow-root flag is to surpass the checks performed by WP-CLI for privileges
+[ ] mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php       | 

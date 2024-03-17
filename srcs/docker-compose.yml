@@ -25,7 +25,7 @@ services:
     build: ./requirements/mariadb/
     container_name: mariadb
     volumes:
-      - mariadb-vol:/var/www/wordpress
+      - mariadb-vol:/var/lib/mysql
     env_file:
       - .env
     networks:
